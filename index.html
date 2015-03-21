@@ -11,7 +11,7 @@
 <script>
 ons.bootstrap();
 ons.ready(function() {
-    // Add another Onsen UI element
+    // Add another Onsake onf fen UI element
     var content = document.getElementById("#my-content");
     content.innerHTML = "<ons-button>Another Button</ons-button>";
     ons.compile(content);
@@ -45,11 +45,15 @@ ons.ready(function() {
                             <ons-icon icon="ion-navicon" style="font-size: 32px; width: 1em;"></ons-icon>
                         </ons-toolbar-button>
                     </div>
-                    <div class="center">Updates</div>
+                    <div class="wrapper">
+                        <div class="container">
+                            <div class="center">
+                                <h1>Updates</h1>
+                                <ul class="posts updates"></ul>
+                            </div>
+                        </div>
                 </ons-toolbar>
                 <p style="text-align: center; color: #999; padding-top: 100px;">Updates Go Here</p>
-                <element onload="pullFeed"></element>
-                <div id="updatefeed"></div>
                 <div class="toolbar">
                     <div class="button">Reload</div>
                 </div>
@@ -72,7 +76,15 @@ ons.ready(function() {
                             <ons-icon icon="ion-navicon" style="font-size: 32px; width: 1em;"></ons-icon>
                         </ons-toolbar-button>
                     </div>
-                    <div class="center">Calendar</div>
+                    <div class="wrapper">
+                        <div class = "container">
+                        <div class="center">
+                            <h1>Calendar</h1>
+                            <ul class="posts calendar"></ul>
+                        </div>
+                    </div>
+                </div>
+                    </div>
                 </ons-toolbar>
                 <p style="text-align: center; color: #999; padding-top: 100px;">Calendar goes here</p>
                 <element onload="pullCal"></element>
@@ -99,45 +111,22 @@ ons.ready(function() {
         </ons-template>
     </ons-navigator>
     <script>
-    $(function pullFeed() {var url = 'https://www.reddit.com/r/uscclubapp.xml';
-        var $list = $('.updatefeed');
-        $.ajax({
-            url: url,
-            type: 'GET',
-            dataType: 'xml',
-            success: function(data) {
-                var $items = $(data).find('item');
-                $items.each(function() {
-                    var $item = $(this);
-                    var link = $item.children('link').text();
-                    var title = $item.children('title').text();
-                    if (link && title) {
-                        $list.append($('<li><a href="' + link + '">' + title + '</a></li>'));
-                    }
+    $(function() {
+        var getPosts = function(subreddit, list) {
+            var subredditURL = 'http://www.reddit.com/r/' + subreddit + '.json';
+            $.ajax(subredditURL).done(function(data, status, xhr) {
+                if (data && data.data.children.length === 0) {
+                    $(list).append('<li><h1>No posts for now!</h1><p>Check back later!</p></li>')
+                    return;
+                }
+                $.each(data.data.children, function(i, v) {
+                    $(list).append('<li><h1>' + v.data.title + '</h1><p>' + v.data.selftext + '</p></li>');
                 });
-            }
-        });
-    });
-    </script>
-    <script>
-    $(function pullCal() {var url ='https://www.reddit.com/r/uscclubappcal.xml';
-        var $list = $('.calendarfeed');
-        $.ajax({
-            url: url,
-            type: 'GET',
-            dataType: 'xml',
-            success: function(data) {
-                var $items = $(data).find('item');
-                $items.each(function() {
-                    var $item = $(this);
-                    var link = $item.children('link').text();
-                    var title = $item.children('title').text();
-                    if (link && title) {
-                        $list.append($('<li><a href="' + link + '">' + title + '</a></li>'));
-                    }
-                });
-            }
-        });
+            });
+        };
+
+        getPosts('uscclubapp', '.posts.updates');
+        getPosts('uscclubappcal', '.posts.calendar');
     });
     </script>
 </body>
