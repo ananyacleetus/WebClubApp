@@ -119,7 +119,13 @@ ons.ready(function() {
                     return;
                 }
                 $.each(data.data.children, function(i, v) {
-                    $(list).append('<li><h1>' + v.data.title + '</h1><p>' + v.data.selftext + '</p></li>');
+                    
+                    var title = v.data.title;
+                    var text = v.data.selftext; 
+                    var id = text.substring(0,3);
+                    
+                    $(list).append('<li><h1>' + v.data.title + '</h1><p>' + v.data.selftext.substring(4) + '</p></li>');
+                   
                 });
             });
         };
