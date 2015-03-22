@@ -190,6 +190,8 @@ img {
 }
 
 .posts li {
+      list-style: none;
+
   background: #222;
   margin: 30px auto;
   color: white;
@@ -197,11 +199,15 @@ img {
 }
 
 .posts li a {
+      list-style: none;
+
   color: white;
   text-decoration: none;
 }
 
 .posts li p {
+      list-style: none;
+
   margin: 0;
   font-size: 20px;
   font-size: 2rem;
