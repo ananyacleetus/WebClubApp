@@ -110,8 +110,8 @@ ons.ready(function() {
         </ons-template>
     </ons-navigator>
     <script>
-    $(function() {
-        var getPosts = function(subreddit, list) {
+    
+            var getPosts = function(subreddit, list) {
             var subredditURL = 'http://www.reddit.com/r/' + subreddit + '.json';
             $.ajax(subredditURL).done(function(data, status, xhr) {
                 if (data && data.data.children.length === 0) {
@@ -123,6 +123,9 @@ ons.ready(function() {
                 });
             });
         };
+        
+    $(function() {
+
 
         getPosts('uscclubapp', '.posts.updates');
         getPosts('uscclubappcal', '.posts.calendar');
