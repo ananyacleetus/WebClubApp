@@ -49,13 +49,13 @@ ons.ready(function() {
                         <div class="container">
                             <div class="center">
                                 <h1>Updates</h1>
-                                <ul class="posts updates"></ul>
-                                </div>
+                                <ul class="posts updates" id="updlist"></ul>
                             </div>
                         </div>
+                    </div>
                 </ons-toolbar>
                 <div class="toolbar">
-                    <div class="button">Reload</div>
+                    <div class="button" id="reloadUpdates">Reload</div>
                 </div>
                 <ul id="feed-list"></ul>
                 <p id="error-message"></p>
@@ -77,19 +77,19 @@ ons.ready(function() {
                         </ons-toolbar-button>
                     </div>
                     <div class="wrapper">
-                        <div class = "container">
-                        <div class="center">
-                            <h1>Calendar</h1>
-                            <ul class="posts calendar"></ul>
+                        <div class="container">
+                            <div class="center">
+                                <h1>Calendar</h1>
+                                <ul class="posts calendar" id="callist"></ul>
+                            </div>
                         </div>
                     </div>
-                </div>
                     </div>
                 </ons-toolbar>
                 <element onload="pullCal"></element>
                 <div id="calendarfeed"></div>
                 <div class="toolbar">
-                    <div class="button">Reload</div>
+                    <div class="button" id="reloadCal">Reload</div>
                 </div>
                 <ul id="feed-list"></ul>
                 <p id="error-message"></p>
@@ -126,6 +126,23 @@ ons.ready(function() {
 
         getPosts('uscclubapp', '.posts.updates');
         getPosts('uscclubappcal', '.posts.calendar');
+    });
+    </script>
+    <script>
+    $(document).ready(function() {
+        $('#reloadCal').click(function() {
+            $("#callist").empty();
+            getPosts('uscclubappcal', '.posts.calendar');
+
+        });
+    });
+    </script>
+    <script>
+    $(document).ready(function() {
+        $('#reloadUpdates').click(function() {
+            $("#updlist").empty();
+            getPosts('uscclubapp', '.posts.updates');
+        });
     });
     </script>
 </body>
