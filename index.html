@@ -55,7 +55,7 @@ ons.bootstrap();
                     </div>
                 </ons-toolbar>
                 <div class="toolbar">
-                    <div class="button" id="reloadUpdates">Reload</div>
+                    <div class="button" id="reloadUpdates" onclick="reloadUpdates()">Reload</div>
                 </div>
                 
             </ons-page>
@@ -79,7 +79,7 @@ ons.bootstrap();
                     </div>
                 </ons-toolbar>
                 <div class="toolbar">
-                    <div class="button" id="reloadCal">Reload</div>
+                    <div class="button" id="reloadCal" onclick="reloadCalendar()">Reload</div>
                 </div>
                 
             </ons-page>
@@ -126,21 +126,16 @@ ons.bootstrap();
         getPosts('uscclubappcal', '.posts.calendar');
     });
     </script>
-    <script>
-    $(document).ready(function() {
-        $('#reloadCal').click(function() {
-            $("#callist").empty();
-            getPosts('uscclubappcal', '.posts.calendar');
-
-        });
-    });
-    </script>
-    <script>
-    $(document).ready(function() {
-        $('#reloadUpdates').click(function() {
-            $("#updlist").empty();
+   <script>
+function reloadUpdates() {
+    $("#updlist").empty();
             getPosts('uscclubapp', '.posts.updates');
-        });
-    });
-    </script>
+}
+</script>
+
+<script>
+function reloadCalendar() {
+    $("#callist").empty();
+            getPosts('uscclubappcal', '.posts.calendar');
+</script>
 </body>
