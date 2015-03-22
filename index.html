@@ -11,10 +11,10 @@
 <script>
 ons.bootstrap();
 // ons.ready(function() {
-    // // Add another Onsake onf fen UI element
-    // var content = document.getElementById("#my-content");
-    // content.innerHTML = "<ons-button>Another Button</ons-button>";
-    // ons.compile(content);
+// // Add another Onsake onf fen UI element
+// var content = document.getElementById("#my-content");
+// content.innerHTML = "<ons-button>Another Button</ons-button>";
+// ons.compile(content);
 // });
 </script>
 
@@ -30,7 +30,8 @@ ons.bootstrap();
                             <ons-icon icon="ion-navicon" style="font-size: 32px; width: 1em;"></ons-icon>
                         </ons-toolbar-button>
                     </div>
-                    <div class="center"><h1>Search</h1></div>
+                    <div class="center">
+                        <h1>Search</h1></div>
                 </ons-toolbar>
                 <div class="center">
                     <input type="search" class="search-input" placeholder="Keyword"></input>
@@ -49,7 +50,7 @@ ons.bootstrap();
                         <div class="container">
                             <div class="center">
                                 <h1>Updates</h1>
-                                <ul style = "list-style-type: none;" class="posts updates" id="updlist"></ul>
+                                <ul style="list-style-type: none;" class="posts updates" id="updlist"></ul>
                             </div>
                         </div>
                     </div>
@@ -57,7 +58,6 @@ ons.bootstrap();
                 <div class="toolbar">
                     <div class="button" id="reloadUpdates" onclick="reloadUpdates()">Reload</div>
                 </div>
-                
             </ons-page>
         </ons-template>
         <ons-template id="page2.html">
@@ -72,7 +72,7 @@ ons.bootstrap();
                         <div class="container">
                             <div class="center">
                                 <h1>Calendar</h1>
-                                <ul style = "list-style-type: none;" class="posts calendar" id="callist"></ul>
+                                <ul style="list-style-type: none;" class="posts calendar" id="callist"></ul>
                             </div>
                         </div>
                     </div>
@@ -81,7 +81,6 @@ ons.bootstrap();
                 <div class="toolbar">
                     <div class="button" id="reloadCal" onclick="reloadCalendar()">Reload</div>
                 </div>
-                
             </ons-page>
         </ons-template>
         <ons-template id="menu.html">
@@ -99,26 +98,25 @@ ons.bootstrap();
         </ons-template>
     </ons-navigator>
     <script>
-    
-            var getPosts = function(subreddit, list) {
-            var subredditURL = 'http://www.reddit.com/r/' + subreddit + '.json';
-            $.ajax(subredditURL).done(function(data, status, xhr) {
-                if (data && data.data.children.length === 0) {
-                    $(list).append('<li><h2>No posts for now!</h2><p>Check back later!</p></li>')
-                    return;
-                }
-                $.each(data.data.children, function(i, v) {
-                    
-                    var title = v.data.title;
-                    var text = v.data.selftext; 
-                    var id = text.substring(0,4);
-                    
-                    $(list).append('<li><h2>' + v.data.title + '</h2><p>' + v.data.selftext.substring(4) + '</p></li>');
-                   
-                });
+    var getPosts = function(subreddit, list) {
+        var subredditURL = 'http://www.reddit.com/r/' + subreddit + '.json';
+        $.ajax(subredditURL).done(function(data, status, xhr) {
+            if (data && data.data.children.length === 0) {
+                $(list).append('<li><h2>No posts for now!</h2><p>Check back later!</p></li>')
+                return;
+            }
+            $.each(data.data.children, function(i, v) {
+
+                var title = v.data.title;
+                var text = v.data.selftext;
+                var id = text.substring(0, 4);
+
+                $(list).append('<li><h2>' + v.data.title + '</h2><p>' + v.data.selftext.substring(4) + '</p></li>');
+
             });
-        };
-        
+        });
+    };
+
     $(function() {
 
 
@@ -126,16 +124,15 @@ ons.bootstrap();
         getPosts('uscclubappcal', '.posts.calendar');
     });
     </script>
-   <script>
-function reloadUpdates() {
-    $("#updlist").empty();
-            getPosts('uscclubapp', '.posts.updates');
-}
-</script>
-
-<script>
-function reloadCalendar() {
-    $("#callist").empty();
+    <script>
+    function reloadUpdates() {
+        $("#updlist").empty();
+        getPosts('uscclubapp', '.posts.updates');
+    }
+    </script>
+    <script>
+    function reloadCalendar() {
+            $("#callist").empty();
             getPosts('uscclubappcal', '.posts.calendar');
-</script>
+    </script>
 </body>
