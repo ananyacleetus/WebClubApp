@@ -140,10 +140,10 @@ ons.bootstrap();
     </script>
     
     <script>
-    $("body").bind('domChanged', function(){
+    $(document).bind("DOMNodeInserted", function(){
      alert('Dom changed');
 });
 
 //Trigger the domChanged event
-$("body").trigger('domChanged');</script>
+$(document).trigger('domChanged');</script>
 </body>
