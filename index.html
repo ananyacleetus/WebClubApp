@@ -32,7 +32,9 @@ ons.bootstrap();
                         </ons-toolbar-button>
                     </div>
                     <div class="center">
-                        <h1>Search</h1></div>
+                        <h1>Search</h1>
+                        <ul style="list-style-type: none;" class="results"></ul>
+                    </div>
                 </ons-toolbar>
                 <div class="center">
                     <input type="search" class="search-input" id="search-input" placeholder="Keyword"></input>
@@ -150,7 +152,7 @@ ons.bootstrap();
     };
     </script>
     <script>
-    function searchPosts() {
+    function searchPosts(list) {
 
         var user_query = document.getElementById("search-input").value;
 
@@ -159,24 +161,25 @@ ons.bootstrap();
 
         var lenght = combined.length;
 
-
-        var results = [];
-
         for (var i = 0; i < length; i++) {
 
 
             if (combined[i].name.indexOf(user_query) > -1) {
 
-                results.append(i);
+                $(list).append(i);
 
             }
 
         }
 
-
-        return results;
-
     };
+
+    $(function() {
+
+
+
+        searchPosts('results');
+    });
     </script>
     <script>
     function reloadUpdates() {
