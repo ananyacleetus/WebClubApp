@@ -31,16 +31,7 @@
         </ons-sliding-menu>
         <ons-template id="page0.html">
             <ons-page>
-                <ons-toolbar>
-                    <div class="left">
-                        <ons-toolbar-button ng-click="menu.toggleMenu()">
-                            <ons-icon icon="ion-navicon" style="font-size: 32px; width: 1em;"></ons-icon>
-                        </ons-toolbar-button>
-                    </div>
-                    <div class="center">
-                        <h1>Search</h1></div>
-                </ons-toolbar>
-                <form class="form-inline global-search" role="form">
+                            <form class="form-inline global-search" role="form">
                     <div class="form-group">
                         <label class="sr-only">Enter search terms</label>
                         <input type="search" class="form-control" name="searchquery" placeholder="Search for a user" ng-model="query" />
@@ -53,6 +44,15 @@
                     <div ng-repeat="result in results" class="col-xs-4">
                         <label>{{result}}</label>
                     </div>
+                <ons-toolbar>
+                    <div class="left">
+                        <ons-toolbar-button ng-click="menu.toggleMenu()">
+                            <ons-icon icon="ion-navicon" style="font-size: 32px; width: 1em;"></ons-icon>
+                        </ons-toolbar-button>
+                    </div>
+                    <div class="center">
+                        <h1>Search</h1></div>
+                </ons-toolbar>
                 </div>
             </ons-page>
         </ons-template>
