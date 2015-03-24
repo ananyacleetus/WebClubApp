@@ -128,9 +128,9 @@
                     var title = v.data.title;
                     var text = v.data.selftext;
                     var id = text.substring(0, 4);
-                    var name = clubarray[parseInt(id) - 1)];
+                    
 
-                $(list).append('<li> < h2 > ' + v.data.title + ' < /h2> < h3 > ' + v.data.name + ' < /h3> < p > ' + v.data.selftext.substring(4) + ' < /p> < /li>');
+                $(list).append('<li> < h2 > ' + v.data.title + ' < /h2> < p > ' + v.data.selftext.substring(4) + ' < /p> < /li>');
 
                 });
         });
