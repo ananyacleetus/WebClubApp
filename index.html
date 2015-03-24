@@ -35,8 +35,9 @@ ons.bootstrap();
                         <h1>Search</h1></div>
                 </ons-toolbar>
                 <div class="center">
-                    <input type="search" class="search-input" placeholder="Keyword"></input>
+                    <input type="search" id="search-input" placeholder="Keyword"></input>
                 </div>
+                <div class="button" onclick="searchPosts()">Search</div>
             </ons-page>
         </ons-template>
         <ons-template id="page1.html">
@@ -148,7 +149,10 @@ ons.bootstrap();
     };
     </script>
     <script>
-    var searchPosts = function(user_query) {
+    var searchPosts = function() {
+
+        var user_query = document.getElementById("search-input").value;
+
 
         var combined = getLists('uscclubapp', '.posts.updates').concat(getLists('uscclubappcal', '.posts.calendar'));
 
