@@ -14,7 +14,7 @@ var clubs = {
     "Chinese Yo-Yo Club":"0012", 
     "Choral Groups":"0013",
     "Classic Rock Club":"0014", 
-    "Color Guard":"0015". 
+    "Color Guard":"0015", 
     "Computer Programming Club":"0016", 
     "Crew (Rowing) ":"0017", 
     "Dairies for Charity":"0018",
