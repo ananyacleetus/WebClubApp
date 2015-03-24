@@ -6,8 +6,7 @@
 <script src="lib/onsen/js/angular/angular.js"></script>
 <script src="lib/onsen/js/onsenui.js"></script>
 <script src="components/loader.js"></script>
-<script type="text/javascript" src="js/data.js"></script> 
-
+<script type="text/javascript" src="js/data.js"></script>
 <!-- <script src="/js/feed-reader.js"></script> -->
 <link rel="stylesheet" href="components/loader.css">
 <script>
@@ -103,19 +102,20 @@ ons.bootstrap();
     var getPosts = function(subreddit, list) {
         var subredditURL = 'http://www.reddit.com/r/' + subreddit + '.json';
         $.ajax(subredditURL).done(function(data, status, xhr) {
-            if (data && data.data.children.length === 0) {
-                $(list).append('<li><h2>No posts for now!</h2><p>Check back later!</p></li>')
-                return;
-            }
-            $.each(data.data.children, function(i, v) {
+                if (data && data.data.children.length === 0) {
+                    $(list).append('<li><h2>No posts for now!</h2><p>Check back later!</p></li>')
+                    return;
+                }
+                $.each(data.data.children, function(i, v) {
+                    
+                        var title = v.data.title;
+                        var text = v.data.selftext;
+                        var id = text.substring(0, 4);
+                        var name = clubarray[parseInt(id) - 1)];
 
-                var title = v.data.title;
-                var text = v.data.selftext;
-                var id = text.substring(0, 4);
+                    $(list).append('<li> < h2 > ' + v.data.title + ' < /h2> < h3 > ' + v.data.name + ' < /h3> < p > ' + v.data.selftext.substring(4) + ' < /p> < /li>');
 
-                $(list).append('<li><h2>' + v.data.title + '</h2><p>' + v.data.selftext.substring(4) + '</p></li>');
-
-            });
+                });
         });
     };
 
@@ -134,15 +134,13 @@ ons.bootstrap();
     </script>
     <script>
     function reloadCalendar() {
-            $("#callist").empty();
-            getPosts('uscclubappcal', '.posts.calendar');
+        $("#callist").empty();
+        getPosts('uscclubappcal', '.posts.calendar');
     }
     </script>
-    
-    <script>
-    $(document).bind("DOMNodeInserted", function(){
-$(document).onclick(getPosts());
-});
-    
-</script>
+    // <script>
+    // $(document).bind("DOMNodeInserted", function() {
+    //     $(document).onclick(getPosts());
+    // });
+    // </script>
 </body>
