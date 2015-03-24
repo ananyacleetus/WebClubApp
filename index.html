@@ -110,7 +110,7 @@ ons.bootstrap();
 
                 var title = v.data.title;
                 var text = v.data.selftext;
-                var id = v.data.selftext.substring(0,4);
+                var id = v.data.selftext.substring(0, 4);
                 var name = clubarray[parseInt(id) - 1];
 
                 $(list).append('<li><h2>' + v.data.title + '</h2><h4>' + name + '</h4><p>' + v.data.selftext.substring(4) + '</p></li>');
@@ -126,6 +126,26 @@ ons.bootstrap();
         getPosts('uscclubappcal', '.posts.calendar');
     });
     </script>
+
+
+    <script>
+    var combined = getPosts('uscclubapp', '.posts.updates').concat(getPosts('uscclubappcal', '.posts.calendar'));
+
+    var results = [];
+
+    combined.forEach(
+
+        if (this.name.indexOf(USER_QUERY) > -1) {
+
+            results.append(this);
+
+        }
+
+    )
+    </script>
+
+
+    
     <script>
     function reloadUpdates() {
         $("#updlist").empty();
