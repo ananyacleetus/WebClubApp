@@ -1,15 +1,21 @@
 <!doctype html>
 <meta charset="utf-8">
 <link rel="stylesheet" href="lib/onsen/css/onsenui.css">
-<link rel="stylesheet" href="css/index.css">
 <link rel="stylesheet" href="lib/onsen/css/onsen-css-components.css">
+<link rel="stylesheet" href="components/loader.css">
+<link rel="stylesheet" href="css/index.css">
+
 <script src="lib/onsen/js/angular/angular.js"></script>
 <script src="lib/onsen/js/onsenui.js"></script>
 <script src="components/loader.js"></script>
 <script type="text/javascript" src="js/data.js"></script>
-<!-- <script src="/js/feed-reader.js"></script> -->
-<link rel="stylesheet" href="components/loader.css">
+<script type ="text/javascript" src="js/getPosts.js"></script>
+<script type ="text/javascript" src="js/reload.js"></script>
+<script type ="text/javascript" src="js/getLists.js"></script>
+<script type ="text/javascript" src="js/searchPosts.js"></script>
+
 <script>
+
 ons.bootstrap();
 // ons.ready(function() {
 // // Add another Onsake onf fen UI element
@@ -114,80 +120,24 @@ ons.bootstrap();
         </ons-template>
     </ons-navigator>
     <script>
-    var getPosts = function(subreddit, list) {
-        var subredditURL = 'http://www.reddit.com/r/' + subreddit + '.json';
-        $.ajax(subredditURL).done(function(data, status, xhr) {
-            if (data && data.data.children.length === 0) {
-                $(list).append('<li><h2>No posts for now!</h2><p>Check back later!</p></li>')
-                return;
-            }
-            $.each(data.data.children, function(i, v) {
-                var title = v.data.title;
-                var text = v.data.selftext;
-                var id = text.substring(0, 4);
-                var name = clubarray[parseInt(id) - 1];
-                $(list).append('<li><h2 style="font-size:20px;">' + v.data.title + '</h2><h4 style="font-size:18px;">' + name + '</h4><p style="font-size:17px;">' + v.data.selftext.substring(4) + '</p></li>');
-            });
-        });
-    };
+    
     $(function() {
         getPosts('uscclubapp', '.posts.updates');
         getPosts('uscclubappcal', '.posts.calendar');
     });
     </script>
     <script>
-    var getLists = function(subreddit, list) {
-        var subredditURL = 'http://www.reddit.com/r/' + subreddit + '.json';
-        $.ajax(subredditURL).done(function(data, status, xhr) {
-            if (data && data.data.children.length === 0) {
-                $(list).append('<li><h2>No posts for now!</h2><p>Check back later!</p></li>')
-            }
-            $.each(data.data.children, function(i, v) {
-                var title = v.data.title;
-                var text = v.data.selftext;
-                var id = text.substring(0, 4);
-                var name = clubarray[parseInt(id) - 1];
-                $(list).append('<li><h2>' + v.data.title + '</h2><h4>' + name + '</h4><p>' + v.data.selftext.substring(4) + '</p></li>');
-            });
-        });
-        return list;
-    };
+
     </script>
     <script>
-    function searchPosts(list) {
-            var user_query = document.getElementById("search-input").value;
-            var combined = getLists('uscclubapp', '.posts.updates').concat(getLists('uscclubappcal', '.posts.calendar'));
-            var length = combined.length;
-            $(combined).each(data.data.children, function(i, v) {
-                    console.log(v.data.title);
-                }
-
-                // for (var i = 0; i < length; i++) {
-                //     if (combined[i].name.indexOf(user_query) > -1) {
-                //         $(list).append(i);
-                // }
-                // }
-            
-        };
+ 
 
 
             $(function() {
                 searchPosts('results');
             });
     </script>
-    <script>
-    function reloadUpdates() {
-        $("#updlist").empty();
-        getPosts('uscclubapp', '.posts.updates');
-    }
-    </script>
-    <script>
-    function reloadCalendar() {
-        $("#callist").empty();
-        getPosts('uscclubappcal', '.posts.calendar');
-    }
-    </script>
-    //
+  
     <script>
     // $(document).bind("DOMNodeInserted", function() {
     //     $(document).onclick(getPosts());
