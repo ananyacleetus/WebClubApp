@@ -6,10 +6,10 @@
                console.log(v.data.title);
            }
 
-           for (var i = 0; i < length; i++) {
-               if (combined[i].name.indexOf(user_query) > -1) {
-                   $(list).append(i);
-               }
-           }
+           // for (var i = 0; i < length; i++) {
+           //     if (combined[i].name.indexOf(user_query) > -1) {
+           //         $(list).append(i);
+           //     }
+           // }
 
        };
