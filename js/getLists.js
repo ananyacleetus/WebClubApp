@@ -1,4 +1,4 @@
-    var getLists = function(subreddit, list) {
+    var getLists = function(subreddit, list, callback) {
         var subredditURL = 'http://www.reddit.com/r/' + subreddit + '.json';
         $.ajax(subredditURL).done(function(data, status, xhr) {
             if (data && data.data.children.length === 0) {
@@ -12,5 +12,5 @@
                 $(list).append('<li><h2>' + v.data.title + '</h2><h4>' + name + '</h4><p>' + v.data.selftext.substring(4) + '</p></li>');
             });
         });
-        return list;
+        return callback(null, $(list));
     };
