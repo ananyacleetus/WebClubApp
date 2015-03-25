@@ -1,8 +1,10 @@
 function searchPosts() {
+        $(".updresults").empty();
+        $(".updcalendar").empty();
 
 
-    getLists('uscclubapp', 'updresults');
-    getLists('uscclubappcal', 'updcalendar');
+    getLists('uscclubapp', '.updresults');
+    getLists('uscclubappcal', '.updcalendar');
 
     // var user_query = document.getElementById("search-input").value;
     // var combined = getLists('uscclubapp', '.posts.updates',callback).concat(getLists('uscclubappcal', '.posts.calendar',callback));

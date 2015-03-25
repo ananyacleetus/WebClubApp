@@ -12,6 +12,8 @@ var getLists = function(subreddit, list) {
                         var text = v.data.selftext;
                         var id = text.substring(0, 4);
                         var name = clubarray[parseInt(id) - 1];
+                        console.log(name);
+                        console.log(user_query);
 
                         if (name.indexOf(user_query) > -1) {
 
