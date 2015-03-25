@@ -1,0 +1,136 @@
+<!doctype html>
+<meta charset="utf-8">
+<link rel="stylesheet" href="lib/onsen/css/onsenui.css">
+<link rel="stylesheet" href="lib/onsen/css/onsen-css-components.css">
+<link rel="stylesheet" href="components/loader.css">
+<link rel="stylesheet" href="css/index.css">
+<script src="lib/onsen/js/angular/angular.js"></script>
+<script src="lib/onsen/js/onsenui.js"></script>
+<script src="components/loader.js"></script>
+<script type="text/javascript" src="js/data.js"></script>
+<script type="text/javascript" src="js/getPosts.js"></script>
+<script type="text/javascript" src="js/reload.js"></script>
+<script type="text/javascript" src="js/getLists.js"></script>
+<script type="text/javascript" src="js/searchPosts.js"></script>
+<script>
+ons.bootstrap();
+// ons.ready(function() {
+// // Add another Onsake onf fen UI element
+// var content = document.getElementById("#my-content");
+// content.innerHTML = "<ons-button>Another Button</ons-button>";
+// ons.compile(content);
+// });
+</script>
+
+<body>
+    <ons-navigator title="Navigator" var="myNavigator">
+        <ons-sliding-menu main-page="page1.html" menu-page="menu.html" side="left" max-slide-distance="250px" var="menu">
+        </ons-sliding-menu>
+        <ons-template id="page0.html">
+            <ons-page>
+                <ons-toolbar>
+                    <div class="left">
+                        <ons-toolbar-button ng-click="menu.toggleMenu()">
+                            <ons-icon icon="ion-navicon" style="font-size: 32px; width: 1em;"></ons-icon>
+                        </ons-toolbar-button>
+                    </div>
+                    <div class="center">
+                        <h1>Search</h1>
+                        <ul style="list-style-type: none;white-space: pre-wrap;      /* CSS3 */
+            white-space: -moz-pre-wrap; /* Firefox */
+            white-space: -pre-wrap;     /* Opera <7 */
+            white-space: -o-pre-wrap;   /* Opera 7 */
+        word-wrap: break-word;      /* IE */" class="results"></ul>
+                    </div>
+                </ons-toolbar>
+                <div class="center">
+                    <input type="search" class="search-input" id="search-input" placeholder="Keyword"></input>
+                </div>
+                <div class="button" onclick="searchPosts()">Search</div>
+            </ons-page>
+        </ons-template>
+        <ons-template id="page1.html">
+            <ons-page>
+                <ons-toolbar>
+                    <div class="left">
+                        <ons-toolbar-button ng-click="menu.toggleMenu()">
+                            <ons-icon icon="ion-navicon" style="font-size: 32px; width: 1em;"></ons-icon>
+                        </ons-toolbar-button>
+                    </div>
+                    <div class="wrapper">
+                        <div class="container">
+                            <div class="center">
+                                <h1>Updates</h1>
+                                <ul style="list-style-type: none; white-space: pre-wrap;      /* CSS3 */
+                    white-space: -moz-pre-wrap; /* Firefox */
+                    white-space: -pre-wrap;     /* Opera <7 */
+                    white-space: -o-pre-wrap;   /* Opera 7 */
+                word-wrap: break-word;      /* IE */" class="posts updates" id="updlist"></ul>
+                            </div>
+                        </div>
+                    </div>
+                </ons-toolbar>
+                <div class="toolbar">
+                    <div class="button" id="reloadUpdates" onclick="reloadUpdates()">Reload</div>
+                </div>
+            </ons-page>
+        </ons-template>
+        <ons-template id="page2.html">
+            <ons-page>
+                <ons-toolbar>
+                    <div class="left">
+                        <ons-toolbar-button onclick="menu.toggleMenu()">
+                            <ons-icon icon="ion-navicon" style="font-size: 32px; width: 1em;"></ons-icon>
+                        </ons-toolbar-button>
+                    </div>
+                    <div class="wrapper">
+                        <div class="container">
+                            <div class="center">
+                                <h1>Calendar</h1>
+                                <ul style="list-style-type: none; white-space: pre-wrap;      /* CSS3 */
+                    white-space: -moz-pre-wrap; /* Firefox */
+                    white-space: -pre-wrap;     /* Opera <7 */
+                    white-space: -o-pre-wrap;   /* Opera 7 */
+                word-wrap: break-word;      /* IE */" class="posts calendar" id="callist"></ul>
+                            </div>
+                        </div>
+                    </div>
+                    </div>
+                </ons-toolbar>
+                <div class="toolbar">
+                    <div class="button" id="reloadCalendar" onclick="reloadCalendar()">Reload</div>
+                </div>
+            </ons-page>
+        </ons-template>
+        <ons-template id="menu.html">
+            <ons-list>
+                <ons-list-item modifier="chevron" onclick="menu.setMainPage('page0.html', {closeMenu: true})">
+                    Search
+                </ons-list-item>
+                <ons-list-item modifier="chevron" onclick="menu.setMainPage('page1.html', {closeMenu: true})">
+                    Updates
+                </ons-list-item>
+                <ons-list-item modifier="chevron" onclick="menu.setMainPage('page2.html', {closeMenu: true})">
+                    Calendar
+                </ons-list-item>
+            </ons-list>
+        </ons-template>
+    </ons-navigator>
+    <script>
+    $(function() {
+        getPosts('uscclubapp', '.posts.updates');
+        getPosts('uscclubappcal', '.posts.calendar');
+    });
+    </script>
+    <script>
+    $(function() {
+        searchPosts('results');
+    });
+    </script>
+    <script>
+    // $(document).bind("DOMNodeInserted", function() {
+    //     $(document).onclick(getPosts());
+    // });
+    //
+    </script>
+</body>
