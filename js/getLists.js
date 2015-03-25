@@ -18,6 +18,6 @@ var getLists = function(subreddit, list) {
                             $(list).append('<li><h2 style="font-size:20px;">' + v.data.title + '</h2><h4 style="font-size:18px;">' + name + '</h4><p style="font-size:17px;">' + v.data.selftext.substring(4) + '</p></li>');
                         }
 
-                    );
+                    });
                 });
         };
