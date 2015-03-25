@@ -1,4 +1,4 @@
-   window.searchPosts = function searchPosts(list){
+ function searchPosts(list){
        var user_query = document.getElementById("search-input").value;
        var combined = getLists('uscclubapp', '.posts.updates').concat(getLists('uscclubappcal', '.posts.calendar'));
        var length = combined.length;
