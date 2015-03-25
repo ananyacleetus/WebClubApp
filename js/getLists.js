@@ -12,5 +12,5 @@
                 $(list).append('<li><h2>' + v.data.title + '</h2><h4>' + name + '</h4><p>' + v.data.selftext.substring(4) + '</p></li>');
             });
         });
-        return callback(null, $(list));
+        callback(null, $(list));
     };
